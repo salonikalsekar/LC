@@ -18,7 +18,7 @@ class Solution:
                     return i,j
 
 
-class Solution:
+class Solution:i
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         d = {}
 
