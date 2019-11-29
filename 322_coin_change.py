@@ -9,7 +9,6 @@ class Solution:
 
         for c in coins:
             for i in range(c, amount + 1):
-                val1, val2 = divmod(i, c)
                 dp[i] = min(dp[i], dp[i - c] + 1)
 
         if dp[-1] != float('inf'):
