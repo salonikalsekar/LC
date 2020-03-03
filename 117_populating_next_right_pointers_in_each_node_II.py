@@ -1,5 +1,5 @@
 """
-# Definition for a Node.
+# Definition for a Node
 class Node:
     def __init__(self, val, left, right, next):
         self.val = val
