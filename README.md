@@ -2,7 +2,7 @@
 
 Problems Folder (restarted)
 
-Strings
-Hash Tables
-Arrays
-Math
+Strings <br>
+Hash Tables <br>
+Arrays <br>
+Math <br>
