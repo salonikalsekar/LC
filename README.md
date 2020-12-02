@@ -6,3 +6,4 @@ Arrays <br>
 Math <br>
 Heaps <br>
 Linked Lists <br>
+Trees <br>
