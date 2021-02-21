@@ -6,16 +6,33 @@
 from collections import defaultdict
 
 
+# Floyd's Cycle Algorithm
 class Solution:
     def hasCycle(self, head: ListNode) -> bool:
-        temp = defaultdict(int)
+        if not head:
+            return False
 
-        while head != None:
-            if head not in temp:
-                temp[head] = head.next
-                head = head.next
-            else:
-                return True
+        slow = head
+        fast = head.next
 
-        return False
+        while slow != fast:
+            if not fast or not fast.next:
+                return False
+
+            slow = slow.next
+            fast = fast.next.next
+        return True
+
+# class Solution:
+#     def hasCycle(self, head: ListNode) -> bool:
+#         temp = defaultdict(int)
+
+#         while head != None:
+#             if head not in temp:
+#                 temp[head] = head.next
+#                 head = head.next
+#             else:
+#                 return True
+
+#         return False
 
