@@ -1,38 +1,37 @@
 class Solution:
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        res = []
+        right = len(matrix[0]) - 1
+        left = 0
+        top = 0
+        bottom = len(matrix) - 1
 
-        # def spiral_traverse(r1, r2, c1, c2):
-        #
-        #     for c in range(c1, c2 + 1):
-        #         yield r1, c
-        #
-        #     for r in range(r1 + 1, r2 + 1):
-        #         yield r, c2
-        #
-        #     if r1 < r2 and c1 < c2:
-        #         for c in range(c2 - 1, c1, -1):
-        #             yield r2, c
-        #
-        #         for r in range(r2, r1, -1):
-        #             yield r, c1
-        #
-        # if not matrix: return []
-        #
-        # ans = []
-        # r1 = 0
-        # r2 = len(matrix) - 1
-        # c1 = 0
-        # c2 = len(matrix[0]) - 1
-        #
-        # while r1 <= r2 and c1 <= c2:
-        #     for r, c in spiral_traverse(r1, r2, c1, c2):
-        #         print(r, c)
-        #         ans.append(matrix[r][c])
-        #     print('-------')
-        #     print(r1, r2, c1, c2)
-        #     r1 += 1
-        #     r2 -= 1
-        #     c1 += 1
-        #     c2 -= 1
-        #
-        # return ans
+        if len(matrix) < 1:
+            return []
+
+        while left <= right and top <= bottom:
+            l = left
+            while l <= right:
+                res.append(matrix[top][l])
+                l += 1
+            top += 1
+
+            t = top
+            while t <= bottom:
+                res.append(matrix[t][right])
+                t += 1
+            right -= 1
+
+            r = right
+            while r >= left and top <= bottom:
+                res.append(matrix[bottom][r])
+                r -= 1
+            bottom -= 1
+
+            b = bottom
+            while b >= top and left <= right:
+                res.append(matrix[b][left])
+                b -= 1
+            left += 1
+        return res
+
