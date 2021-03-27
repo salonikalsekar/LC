@@ -2,8 +2,6 @@ class Solution(object):
     def generateParenthesis(self, N):
 
         res = []
-        left = 0
-        right = 0
 
         def genparanthesis(left=0, right=0, s=''):
             if len(s) == N * 2:
