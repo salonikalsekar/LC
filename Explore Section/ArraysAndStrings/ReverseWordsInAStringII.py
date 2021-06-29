@@ -16,4 +16,4 @@ class Solution:
                 reverseWord(left, idx - 1)
                 left = idx + 1
 
-        reverseWord(left, len(s) - 1)
+        # reverseWord(left, len(s) - 1)

@@ -3,13 +3,10 @@ class Solution:
         maxStr = ''
 
         def checkPalindrome(l, r):
-            st = s[l: r + 1]
-            length = 0
             left = -1
             right = -1
             while l >= 0 and r <= len(s) - 1:
                 if s[l] == s[r]:
-                    length = r - l + 1
                     left = l
                     right = r
                     l -= 1
