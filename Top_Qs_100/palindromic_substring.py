@@ -1,4 +1,4 @@
-_sclass Solution:
+class Solution:
     def countSubstrings(self, s: str) -> int:
         c = 0
         def expandAroundCenter(i, j, s):
