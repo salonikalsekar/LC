@@ -1,40 +1,30 @@
-from collections import Counter
+
+def solution(n):
+
+    indexes = []
+    all_possibilities = []
+    N = abs(n)
+
+    new_n = [int(x) for x in str(N)]
+    for index, element in enumerate(new_n):
+        if(element == 5):
+            indexes.append(index)
+    for element in indexes:
+        temp = new_n.copy()
+        temp.pop(element)
+        temp = [str(x) for x in temp]
+        temp = ''.join(temp)
+        temp = int(temp)
+
+    all_possibilities.append(temp)
+    if n < 0:
+        all_possibilities = [x * -1 for x in all_possibilities]
 
 
-class Solution:
-    def minWindow(self, s: str, t: str) -> str:
-        l = 0
-        r = 0
+    return max(all_possibilities)
 
-        dict_t = Counter(t)
-        required = len(dict_t)
+examples = [15958, -5859, -5000]
 
-        formed = 0
-        ans = float('inf'), None, None
-        window_dict = {}
-
-        while r < len(s):
-
-            ch = s[r]
-
-            window_dict[ch] = window_dict.get(ch, 0) + 1
-
-            if ch in dict_t and dict_t[ch] == window_dict[ch]:
-                formed += 1
-
-            while l <= r and formed == required:
-                ch = s[l]
-
-                if r - l + 1 < ans[0]:
-                    ans = r - l + 1, l, r
-
-                window_dict[ch] -= 1
-
-                if ch in dict_t and dict_t[ch] > window_dict[ch]:
-                    formed -= 1
-
-                l += 1
-
-            r += 1
-
-        return "" if ans[0] == float('inf') else s[ans[1]: ans[2] + 1]
+for N in examples:
+     result = solution(N)
+     print(result)
