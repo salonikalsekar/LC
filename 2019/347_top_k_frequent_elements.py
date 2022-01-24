@@ -1,3 +1,5 @@
+Solution 1
+
 # from collections import defaultdict
 
 # class Solution:
@@ -24,7 +26,7 @@
 #                     res.append(v[0])
 
 #         return res
-
+Solution 2
 from collections import Counter
 
 
@@ -33,3 +35,24 @@ class Solution:
         c_dict = Counter(nums)
 
         return sorted(c_dict.keys(), key=c_dict.get, reverse=True)[:k]
+
+
+
+
+
+---------------------------------------
+Solution 3
+Using heaps 
+
+from collections import Counter
+import heapq
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        c = Counter(nums)
+        
+        q = []
+        
+        for key, value in c.items():
+            heapq.heappush(q, (-1 * value, key))
+                 
+        return [heappop(q)[1] for _ in range(k)]
