@@ -58,26 +58,33 @@ class Solution:
         return [heappop(q)[1] for _ in range(k)]
 
 -------------------------------------------------------------------------------------------------------------------------
-Solution 4 - heaps O(nlogk)
+Solution 4 - heaps time - O(nlogk) 
+space - O(N + k) for N length array and k length heap
 
-import heapq as h
+import heapq
+from collections import Counter
 class Solution:
-    def topKFrequent(self, arr: List[int], k: int) -> List[int]:
-        # Make counter dictionary
-        count_dict = Counter(arr)
-        items = []
-        # Revert the key, value order since tuple is sorted by first value in heap
-        for key,val in count_dict.items():
-            items.append((val,key))
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        '''
+        1. Create frequency hashmap to accumulate counts by element
+        2. Use heap data structure, such that for each element in the array
+            .heappushpop(element) when k == len(nums)
+            .heappush(element) otherwise
+        3. Return a list of k elements (without frequency values)
+        '''
+
+        d_freq = Counter(nums)
+        
         heap = []
-        # push first k elements in heap
-        for i in range(k):
-            h.heappush(heap,items[i])
-        # Push rest of elements by maintaing length = k
-        for i in range(k, len(items)):
+        for num, freq in d_freq.items():
+            if k == len(heap):
+                heapq.heappushpop(heap, (freq, num))
+            else:
+                heapq.heappush(heap, (freq, num))
+                
+                
+        res = []
+        for freq, num in heap:
+            res.append(num)
             
-            if items[i][0] >= heap[0][0]:
-                h.heappop(heap)
-                h.heappush(heap, items[i])
-        # Return the values of the tuples
-        return [x[1] for x in heap]
+        return res
